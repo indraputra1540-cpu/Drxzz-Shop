@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Keranjang</title>
+</head>
+<body>
+
+<h2>Keranjang Belanja</h2>
+
+<div id="cart"></div>
+<h3 id="total"></h3>
+
+<button onclick="location.href='payment.html'">
+  Lanjut ke Pembayaran
+</button>
+
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let container = document.getElementById("cart");
+let total = 0;
+
+cart.forEach(item => {
+  container.innerHTML += `
+    <p>${item.nama} - Rp ${item.harga}</p>
+  `;
+  total += Number(item.harga);
+});
+
+document.getElementById("total").innerText =
+  "Total: Rp " + total;
+
+function checkout() {
+  alert("Checkout berhasil");
+  localStorage.removeItem("cart");
+  location.reload();
+}
+</script>
+
+</body>
+</html>
