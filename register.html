@@ -1,0 +1,43 @@
+(<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Register</title>
+</head>
+<body>
+
+
+<h2>Register</h2>
+<input type="text" id="username" placeholder="Username"><br><br>
+<input type="password" id="password" placeholder="Password"><br><br>
+<select id="role">
+<option value="user">User</option>
+<option value="admin">Admin</option>
+</select><br><br>
+<button onclick="register()">Daftar</button>
+
+
+<script>
+function register() {
+let users = JSON.parse(localStorage.getItem('users')) || [];
+let username = document.getElementById('username').value;
+let password = document.getElementById('password').value;
+let role = document.getElementById('role').value;
+
+
+if(!username || !password) {
+alert('Lengkapi data');
+return;
+}
+
+
+users.push({ username, password, role });
+localStorage.setItem('users', JSON.stringify(users));
+alert('Register berhasil');
+location.href = 'login.html';
+}
+</script>
+
+
+</body>
+</html>
