@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+</head>
+<body>
+
+
+<h2>Login</h2>
+<input type="text" id="username" placeholder="Username"><br><br>
+<input type="password" id="password" placeholder="Password"><br><br>
+<button onclick="login()">Login</button>
+
+
+<script>
+function login() {
+let users = JSON.parse(localStorage.getItem('users')) || [];
+let username = document.getElementById('username').value;
+let password = document.getElementById('password').value;
+
+
+let user = users.find(u => u.username === username && u.password === password);
+
+
+if(!user) {
+alert('Login gagal');
+return;
+}
+
+
+localStorage.setItem('loginUser', JSON.stringify(user));
+
+
+if(user.role === 'admin') {
+location.href = 'index.html';
+} else {
+location.href = 'index.html';
+}
+}
+</script>
+
+
+</body>
+</html>
